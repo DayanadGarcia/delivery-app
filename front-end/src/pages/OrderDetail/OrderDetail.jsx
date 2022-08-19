@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Footer from '../../components/Footer/Footer';
 import Navbar from '../../components/Navbar/Navbar';
 import { fetchOrderBySaleId } from '../../helpers/api';
 
@@ -129,7 +128,7 @@ export default function OrderDetail() {
 
           </h1>)
         : <h1>Nenhum produto inserido</h1>}
-      <Footer />
+
     </section>
   );
 }

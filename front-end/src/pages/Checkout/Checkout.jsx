@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import { fetchSellers } from '../../helpers/api';
 import Navbar from '../../components/Navbar/Navbar';
 import TableInfo from '../../components/TableInfo/TableInfo';
-import Footer from '../../components/Footer/Footer';
 
 function Checkout() {
   const [products, setProducts] = useState(localStorage.getItem('products') === null
@@ -61,16 +60,18 @@ function Checkout() {
 
   return (
     <section>
+
       <Navbar />
-      <table>
+
+      <table className="w-4/5 mx-auto border-collapse border border-slate-500">
         <thead>
           <tr>
-            <th>Item</th>
-            <th>Descrição</th>
-            <th>Quantidade</th>
-            <th>Valor Unitário</th>
-            <th>Sub-total</th>
-            <th>Remover Item</th>
+            <th className="border border-slate-300 p-3 bg-slate-100">Item</th>
+            <th className="border border-slate-300 p-3 bg-slate-100">Descrição</th>
+            <th className="border border-slate-300 p-3 bg-slate-100">Quantidade</th>
+            <th className="border border-slate-300 p-3 bg-slate-100">Valor Unitário</th>
+            <th className="border border-slate-300 p-3 bg-slate-100">Sub-total</th>
+            <th className="border border-slate-300 p-3 bg-slate-100">Remover Item</th>
           </tr>
         </thead>
         <tbody>
@@ -96,19 +97,27 @@ function Checkout() {
         ? (
           <h1
             data-testid="customer_checkout__element-order-total-price"
+            className="m-10 text-4xl font-bold text-center text-slate-700"
           >
             {`Total: R$ ${calculateTotal().replace('.', ',')}`}
-
           </h1>)
         : <h1>Nenhum produto inserido</h1>}
-      <form onSubmit={ submitSale }>
-        <label htmlFor="sellers">
+
+      <form
+        onSubmit={ submitSale }
+        className="w-4/5 mx-auto flex flex-wrap gap-10 items-end"
+      >
+        <label
+          htmlFor="sellers"
+          className="font-bold text-lg flex flex-col items-start"
+        >
           P.Vendedora Responsável:
           <select
             data-testid="customer_checkout__select-seller"
             onClick={ (e) => setSelectedSeller(e.target.value) }
             name="sellers"
             id="sellers"
+            className="px-4 py-2 rounded-lg text-slate-700 font-medium mt-2"
             defaultValue={ sellers !== undefined
              && sellers.length !== 0 ? sellers[0].id : 0 }
           >
@@ -118,8 +127,13 @@ function Checkout() {
               : <option>Nenhum vendedor disponivel</option>}
           </select>
         </label>
-        <label htmlFor="endereco">
+
+        <label
+          htmlFor="endereco"
+          className="font-bold text-lg flex flex-col items-start"
+        >
           Endereço:
+
           <input
             data-testid="customer_checkout__input-address"
             onChange={ (e) => setAddress(e.target.value) }
@@ -128,28 +142,39 @@ function Checkout() {
             type="text"
             placeholder="Travessa Terceira da Castanheira, bairro murici"
             required
+            className="
+            px-4 py-2 bg-gray-100 rounded-lg text-slate-700 font-medium mt-2"
           />
         </label>
-        <label htmlFor="numero">
+
+        <label
+          htmlFor="numero"
+          className="font-bold text-lg flex flex-col items-start"
+        >
+          Número:
+
           <input
             data-testid="customer_checkout__input-addressNumber"
             onChange={ (e) => setAddressNumber(e.target.value) }
             value={ addressNumber }
             input="numero"
             type="text"
-            placeholder="777"
+            placeholder="123"
             required
+            className="
+            px-4 py-2 bg-gray-100 rounded-lg text-slate-700 font-medium mt-2"
           />
         </label>
         <button
           data-testid="customer_checkout__button-submit-order"
           type="submit"
+          className="py-3 px-5 rounded-lg text-white font-bold bg-[#07A0C3]"
         >
           Finalizar pedido
 
         </button>
       </form>
-      <Footer />
+
     </section>
   );
 }

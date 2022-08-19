@@ -22,16 +22,13 @@ function Navbar() {
 
   return (
     <header
-      className="flex items-center justify-between
-    flex-wrap bg-[#F0C808] p-6 text-lg font-bold"
+      className="bg-[#F0C808] mb-10 p-5 font-bold flex justify-between"
     >
-      {
-        userRole === 'customer' && (
+      <div className="flex gap-6">
+        {userRole === 'customer' && (
           <>
             <Link
-              className="block mt-4 lg:inline-block lg:mt-0
-              text-stone-900 hover:text-orange-600 mr-4
-               cursor-pointer"
+              className="hover:bg-white py-1 px-2 rounded-md"
               to="/customer/products"
               data-testid="customer_products__element-navbar-link-products"
             >
@@ -39,62 +36,52 @@ function Navbar() {
             </Link>
 
             <Link
-              className="block mt-4 lg:inline-block lg:mt-0
-              text-stone-900 hover:text-orange-600 cursor-pointer"
+              className="hover:bg-white py-1 px-2 rounded-md"
               to="/customer/orders"
               data-testid="customer_products__element-navbar-link-orders"
             >
               Meus pedidos
             </Link>
           </>
-        )
-      }
-      {
-        userRole === 'seller' && (
+        )}
+
+        {userRole === 'seller' && (
           <Link
-            className="block mt-4 lg:inline-block lg:mt-0
-            text-stone-900 hover:text-orange-600 mr-4 cursor-pointer"
+            className=""
             to="/seller/orders"
             data-testid="customer_products__element-navbar-link-orders"
           >
             Pedidos
           </Link>
-        )
-      }
+        )}
 
-      { userRole === 'administrator'
-      && (
-        <>
+        { userRole === 'administrator' && (
           <Link
             to="/admin/manage"
             data-testid="administrator__element-navbar-link-manager"
           >
             Gerenciar Usuários
           </Link>
+        )}
+      </div>
 
-          <span>
-            {userName}
-          </span>
-        </>
-      )}
+      <div className="flex gap-6">
+        <span
+          className="cursor-default py-1 px-2 rounded-md"
+          data-testid="customer_products__element-navbar-user-full-name"
+        >
+          {userName}
+        </span>
 
-      <span
-        className="block mt-4 lg:inline-block lg:mt-0
-        text-stone-900 mr-4"
-        data-testid="customer_products__element-navbar-user-full-name"
-      >
-        {userName}
-      </span>
-
-      <button
-        className="block mt-4 lg:inline-block lg:mt-0
-        text-stone-900 hover:text-orange-600 mr-4 cursor-pointer"
-        type="button"
-        data-testid="customer_products__element-navbar-link-logout"
-        onClick={ handleLogout }
-      >
-        Sair
-      </button>
+        <button
+          className="hover:bg-white py-1 px-2 rounded-md"
+          type="button"
+          data-testid="customer_products__element-navbar-link-logout"
+          onClick={ handleLogout }
+        >
+          Sair
+        </button>
+      </div>
     </header>
   );
 }

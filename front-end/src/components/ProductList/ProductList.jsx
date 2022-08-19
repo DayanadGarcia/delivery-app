@@ -20,7 +20,10 @@ function ProductList() {
   }, [savedProducts]);
 
   return (
-    <section className="flex flex-wrap gap-10 w-full bg-gray-50 p-8 justify-center">
+    <section
+      className="
+      flex flex-wrap gap-10 w-full p-8 justify-center max-w-[1000px] mx-auto"
+    >
       {
         products.map((product) => (
           <ProductCard
@@ -37,7 +40,8 @@ function ProductList() {
         onClick={ () => history.push('/customer/checkout') }
         className="
           bg-[#F0C808]
-          p-4
+          py-2
+          px-4
           rounded-xl
           fixed
           right-0
